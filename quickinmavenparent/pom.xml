@@ -20,7 +20,7 @@
         <commons-io.version>2.6</commons-io.version>
         <httpclient.version>4.5.5</httpclient.version>
         <httpcore.version>4.4.9</httpcore.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j2.version>2.10.0</log4j2.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <slf4j-log4j.version>1.7.6</slf4j-log4j.version>
     </properties>
@@ -108,11 +108,15 @@
                 <artifactId>httpcore</artifactId>
                 <version>${httpcore.version}</version>
             </dependency>
-
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -120,11 +124,15 @@
                 <version>${slf4j-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j-log4j.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j2.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-web</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
