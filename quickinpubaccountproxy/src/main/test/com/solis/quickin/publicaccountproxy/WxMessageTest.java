@@ -29,7 +29,7 @@ public class WxMessageTest {
             String timeStamp = "1409659589";
             String nonce = "263014780";
             String echoStr = "P9nAzCzyDtyTWESHep1vC5X9xho/qYX3Zpb4yKa9SKld1DsH3Iyt3tP3zNdtp+4RPcs8TgAE7OaBO+FZXvnaqQ==";
-            wxcpt.verifyUrl(verifyMsgSig, timeStamp, nonce, echoStr);
+            wxcpt.verifyUrl(verifyMsgSig, timeStamp, nonce);
         } catch (AesException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class WxMessageTest {
             String timeStamp = "1528558160";
             String nonce = "705521636";
             String echoStr = "3342085780301150814";
-            wxcpt.verifyUrl(verifyMsgSig, timeStamp, nonce, echoStr);
+            wxcpt.verifyUrl(verifyMsgSig, timeStamp, nonce);
         } catch (AesException e) {
             e.printStackTrace();
         }

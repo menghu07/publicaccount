@@ -24,6 +24,7 @@ public class IntializerContextListener implements ServletContextListener {
             SystemProperties.appID = properties.getProperty("appid");
             SystemProperties.appsecret = properties.getProperty("appsecret");
             SystemProperties.wechatURL = properties.getProperty("wechaturl");
+            SystemProperties.token = properties.getProperty("token");
             System.out.println("properties" + properties);
         } catch (IOException e) {
             e.printStackTrace();

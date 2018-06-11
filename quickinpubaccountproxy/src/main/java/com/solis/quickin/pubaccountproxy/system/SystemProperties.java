@@ -10,4 +10,6 @@ public class SystemProperties {
     public static String appsecret;
 
     public static String wechatURL;
+
+    public static String token;
 }

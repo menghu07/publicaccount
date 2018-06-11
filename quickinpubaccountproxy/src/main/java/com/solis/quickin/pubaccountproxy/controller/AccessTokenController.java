@@ -20,7 +20,7 @@ public class AccessTokenController {
 
     private static final Object ACCESS_LOCK = new Object();
 
-    @RequestMapping(path = "/getaccesstoken")
+    @RequestMapping(path = "/getaccesstoken.do")
     @ResponseBody
     public String getAccessToken() {
         List<NameValuePair> pairs = new ArrayList<>();

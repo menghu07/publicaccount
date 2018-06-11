@@ -6,16 +6,20 @@
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5p] [%5l] [%m] %n"/>
         </layout>
     </appender>
-    <appender name="newfile" class="org.apache.log4j.DailyRollingFileAppender">
+    <appender name="system" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="${logpath}/pubaccountproxy/systemlog.log"/>
         <param name="DatePattern" value="'.'yyyy-MM-dd-HH-mm'.log'"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5p] [%5l] [%m] %n"/>
         </layout>
     </appender>
+    <logger name="system">
+        <appender-ref ref="system"/>
+        <level value="INFO"/>
+    </logger>
     <root>
         <level value="DEBUG"/>
         <appender-ref ref="console"/>
-        <appender-ref ref="newfile"/>
+        <appender-ref ref="system"/>
     </root>
 </log4j:configuration>
