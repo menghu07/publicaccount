@@ -95,4 +95,35 @@ public class XMLParser {
                 + " <CreateTime>%3$d</CreateTime> <MsgType><![CDATA[%4$s]]></MsgType> <Content><![CDATA[%5$s]]></Content> </xml>";
         return String.format(format, toUser, fromUser, createTime, msgType, content);
     }
+
+    /**
+     *
+     * @param toUser
+     * @param fromUser
+     * @param createTime
+     * @param msgType
+     * @param content
+     * @return
+     */
+    public static String replyToUserLocation(String toUser, String fromUser, long createTime, String msgType, String content) {
+        String format = "<xml> <ToUserName><![CDATA[%1$s]]></ToUserName> <FromUserName><![CDATA[%2$s]]></FromUserName>"
+                + " <CreateTime>%3$d</CreateTime> <MsgType><![CDATA[%4$s]]></MsgType> <Content><![CDATA[%5$s]]></Content> </xml>";
+        return String.format(format, toUser, fromUser, createTime, msgType, content);
+    }
+
+    /**
+     * 返回图文
+     * @param toUser
+     * @param fromUser
+     * @param createTime
+     * @return
+     */
+    public static String replayToUserPictureAndText(String toUser, String fromUser, long createTime) {
+        String format = "<xml><ToUserName><![CDATA[%1$s]]></ToUserName><FromUserName><![CDATA[%2$s]]></FromUserName>"
+                + "<CreateTime>%3$s</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>1</ArticleCount><Articles>"
+                + "<item><Title><![CDATA[欢迎访问快印]]></Title><Description><![CDATA[快印线上上传文件并下单支付,送货上门,实现足不出户打印，快捷方便]]>"
+                + "</Description><PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz_jpg/2v1M5srgPWgfkVaorDyP09NumQ62eGurD9eBDGCK92uTXOL2GPyq8oW3dJ5CqH1enyC7BEaamA2aGAdykvEeicA/0]]>"
+                +  "</PicUrl><Url><![CDATA[http://39.105.145.37/pubaccountproxy]]></Url></item></Articles></xml>";
+        return String.format(format, toUser, fromUser, createTime);
+    }
 }

@@ -2,6 +2,7 @@ package com.solis.quickin.pubaccountproxy.controller;
 
 import com.solis.quickin.pubaccountproxy.system.SystemProperties;
 import com.solis.quickin.pubaccountproxy.util.crypto.WxBizMsgCrypt;
+import com.solis.quickin.pubaccountproxy.util.dispatcher.Dispatcher;
 import com.solis.quickin.pubaccountproxy.util.xmlparse.XMLParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,15 +81,7 @@ public class WxMessageController {
             //"<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName>"
             //+ "<![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType>  <Content><![CDATA[this is a test]]></Content> <MsgId>1234567890123456</MsgId>  </xml>"
             Document document = XMLParser.convertToDocument(message.toString());
-            String developer = document.getElementsByTagName("ToUserName").item(0).getTextContent();
-            String user = document.getElementsByTagName("FromUserName").item(0).getTextContent();
-            String messageType = document.getElementsByTagName("MsgType").item(0).getTextContent();
-            String createTime = document.getElementsByTagName("CreateTime").item(0).getTextContent();
-            String content = document.getElementsByTagName("Content").item(0).getTextContent();
-            String messageID = document.getElementsByTagName("MsgId").item(0).getTextContent();
-            LOGGER.info("parsed: developer=" + developer + ", user=" + user + ", messageType=" + messageType + ", createTime=" + createTime
-                    + ", content=" + content + ", messageID=" + messageID);
-            replyMessage = XMLParser.replyToUser(user, developer, System.currentTimeMillis(), messageType, content + ", i receive yr data");
+            replyMessage = Dispatcher.dispatchMessage(document).processMessage(document);
         } catch (Exception e) {
             LOGGER.error("wxmessage处理请求异常", e);
         }

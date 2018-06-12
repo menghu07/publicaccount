@@ -1,6 +1,7 @@
 package com.solis.quickin.pubaccountproxy.system;
 
 import com.solis.quickin.pubaccountproxy.constant.SystemConstant;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,6 +27,7 @@ public class IntializerContextListener implements ServletContextListener {
             SystemProperties.wechatURL = properties.getProperty("wechaturl");
             SystemProperties.token = properties.getProperty("token");
             System.out.println("properties" + properties);
+            SystemEnvironment.webApplicationContext = WebApplicationContextUtils.findWebApplicationContext(sce.getServletContext());
         } catch (IOException e) {
             e.printStackTrace();
         }
