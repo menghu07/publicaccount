@@ -14,7 +14,6 @@ public class WeImageMessageServiceImpl implements WeMessageService {
 
     @Override
     public String processMessage(Document weMessage) {
-
         String developer = weMessage.getElementsByTagName("ToUserName").item(0).getTextContent();
         String user = weMessage.getElementsByTagName("FromUserName").item(0).getTextContent();
         String messageType = weMessage.getElementsByTagName("MsgType").item(0).getTextContent();
