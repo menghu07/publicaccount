@@ -1,5 +1,8 @@
 package com.solis.quickin.publicaccountproxy;
 
+import com.alibaba.fastjson.JSONObject;
+import com.solis.quickin.pubaccountproxy.constant.SystemConstant;
+import com.solis.quickin.pubaccountproxy.system.SystemProperties;
 import com.solis.quickin.pubaccountproxy.util.connection.ConnectionUtil;
 import com.solis.quickin.pubaccountproxy.util.crypto.AesException;
 import com.solis.quickin.pubaccountproxy.util.crypto.WxBizMsgCrypt;
@@ -16,7 +19,8 @@ public class WxMessageTest {
     public static void main(String[] args) {
 //        verifyUrl();
 //        debugVerifyUrl();
-        getAccessToken();
+//        getAccessToken();
+        testHttpPost();
     }
 
     private static void verifyUrl() {
@@ -58,6 +62,23 @@ public class WxMessageTest {
         try {
             String response = ConnectionUtil.sendGetHttpRequest("https://api.weixin.qq.com/cgi-bin/token", pairs);
             System.out.println("response=" + response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void testHttpPost() {
+        String response = "";
+        try {
+            System.out.println("response=" + response);
+            JSONObject accessToken = JSONObject.parseObject(response);
+            //创建菜单
+            String menu = "{\"button\":[{\"type\":\"view\", name:'商店', url:'https://mp.weixin.qq.com/s/XqiB7sLvDjoD9zgX-q3Hxg'},"
+                    + "{type:'view', name:'购物车', url:'https://mp.weixin.qq.com/s/dEHmKe4sJ-rmnGtNyzka0Q'},"
+                    + "{type:'view', name:'我的', url:'https://mp.weixin.qq.com/s/GcvZAlmXqiv-xnc9XjC4Rw'}]}";
+            response = ConnectionUtil.sendPostHttpRequest("http://localhost:8093/pubaccountproxy/wxmessage.do?access_token=",
+                    "application/json", menu);
+            System.out.println("menu reponse=" + response);
         } catch (Exception e) {
             e.printStackTrace();
         }
